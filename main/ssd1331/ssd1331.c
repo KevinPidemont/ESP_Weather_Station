@@ -124,29 +124,10 @@ void default_loading_sequence(void) {
     send_command(0x7D);
     send_command(SSD1331_CMD_DISPLAYON); //--turn on oled panel
 
-    send_command(0x26);
+    send_command(SSD1331_CMD_FILL);
     send_command(0x1);
 
-    /*
-    send_command(0x22);
-
-    send_command(0); // Column start
-    send_command(0); // Row start
-    send_command(95); // Column end
-    send_command(63); // Row end
-
-    // Blue color
-    send_command(28); // Outline C color
-    send_command(28); // Outline B color
-    send_command(28); // Outline A color
-
-    
-    // Red color
-    send_command(28); // Fill area C color
-    send_command(0); // Fill area B color
-    send_command(0); // Fill area A color
-
-    draw_pixel(20, 20, 0xAAAA);*/
+    ssd1331_clear_window();
 }
 
 esp_err_t ssd1331_begin(ssd1331_desc* desc) {
