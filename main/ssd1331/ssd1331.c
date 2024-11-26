@@ -2,9 +2,11 @@
 
 #include <stdio.h>
 #include <driver/spi_master.h>
+#include "font.h"
 
 #define SSD1331_CMD_DRAWLINE        0x21 //!< Draw line
 #define SSD1331_CMD_DRAWRECT        0x22 //!< Draw rectangle
+#define SSD1331_CMD_CLEARWINDOW     0x25 //!< Clear window
 #define SSD1331_CMD_FILL            0x26 //!< Fill enable/disable
 #define SSD1331_CMD_SETCOLUMN       0x15 //!< Set column address
 #define SSD1331_CMD_SETROW          0x75 //!< Set row adress
@@ -213,5 +215,10 @@ void ssd1331_turn_off(void) {
 }
 
 void ssd1331_clear_window(void) {
-
+    send_command(SSD1331_CMD_CLEARWINDOW);
+    send_command(0);
+    send_command(0);
+    send_command(SSD1331_WIDTH - 1);
+    send_command(SSD1331_HEIGHT - 1);
 }
+
