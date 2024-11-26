@@ -21,12 +21,12 @@
  * @brief Associate one of the predefined char key to their bitmap representation.
  * 
  * This variable holds the bitmaps of all characters that can be drawn.
- * Each character is 5 pixels wide and 6 pixels tall (the last 2 rows are always empty meaning their bits are equals to '0').
+ * Each character is 5 pixels wide and 7 pixels tall (the last 2 rows are always empty meaning their bits are equals to '0').
  * 
  * @note It is recommended to use predefined constants (e.g., `CHAR_0`, `CHAR_1`, ...) 
  *       to access character bitmaps instead of directly using the array index.
  */
-const uint8_t font5x8[][6] = {
+static const uint8_t font5x8[][6] = {
     [CHAR_0] = {0x3E, 0x51, 0x49, 0x45, 0x3E},
     [CHAR_1] = {0x00, 0x42, 0x7F, 0x40, 0x00},
     [CHAR_2] = {0x62, 0x51, 0x49, 0x49, 0x46},

@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "ssd1331/ssd1331.h"
+#include "ssd1331/font.h"
 
 #define PIN_NUM_MOSI 23
 #define PIN_NUM_CLK 18
@@ -18,5 +19,12 @@ void app_main(void)
         .rs = PIN_NUM_RST,
         .spi_clk_speed = 10 * 1000 * 1000, // 10MHz
     };
-   ssd1331_begin(&desc);
+    ssd1331_begin(&desc);
+
+    // Draw every character on the first row
+    uint8_t x = 0;
+    for (int i = 0; i < 13; i++) {
+        // 7 = 5 pixels wide + 2 padding
+        ssd1331_draw_char((7 * i), 0, i, 0xFFFF);
+    }
 }

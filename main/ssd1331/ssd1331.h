@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include <driver/gpio.h>
 
+#define SSD1331_WIDTH 96
+#define SSD1331_HEIGHT 64
+
 /**
  * @struct ssd1331_desc
  * @brief Descriptor of SSD1331.
@@ -72,4 +75,26 @@ void ssd1331_turn_off(void);
  *       you want to power down the display after clearing it.
  */
 void ssd1331_clear_window(void);
+
+/**
+ * @brief Draw a char at the specified (x,y) location on the screen.
+ * 
+ * This function draws the character associated with the given `char_id` at the 
+ * specified (x, y) coordinates. The character is drawn using the corresponding 
+ * bitmap from the font, and displayed in the specified color.
+ * 
+ * @param x The x-coordinate of the character. It specifies the horizontal position 
+ *          (column) on the screen (in pixels).
+ * @param y The y-coordinate of the character. It specifies the vertical position 
+ *          (row) on the screen (in pixels).
+ * @param char_id The identifier of the character bitmap. Must be a valid character 
+ *                identifier (such as `CHAR_0`, `CHAR_1`, etc.), as defined in `font.h`.
+ * @param color The color of the character. The color is specified in a 16-bit format 
+ *              (e.g., RGB565), or a predefined color constant.
+ * 
+ * @note Ensure that the (x, y) coordinates are within the bounds of the screen 
+ *       to avoid drawing outside the visible area.
+ *       Also ensure to provide a valid character identifier.
+ */
+void ssd1331_draw_char(uint8_t x, uint8_t y, uint8_t char_id, uint16_t color);
 #endif

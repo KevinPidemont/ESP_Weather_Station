@@ -203,3 +203,39 @@ void ssd1331_clear_window(void) {
     send_command(SSD1331_HEIGHT - 1);
 }
 
+void ssd1331_draw_char(uint8_t x, uint8_t y, uint8_t char_id, uint16_t color) {
+    // When the given char_id is provided, we abort this operation
+    if (char_id >= 13) {
+        return;
+    }
+
+    if (x >= SSD1331_WIDTH) {
+        x = SSD1331_WIDTH - 1;
+    }
+
+    if (y >= SSD1331_HEIGHT) {
+        y = SSD1331_HEIGHT - 1;
+    }
+
+    // Get the character bitmap
+    const uint8_t *bitmap = font5x8[char_id];
+
+   
+    // Iterate over the bitmap columns.
+    for (int i = 0; i < 5; i++) {
+        // Get the current column representation.
+        uint8_t line = bitmap[i];
+
+        // Every character are defined using a byte.
+        // As the character are 7-pixels tall, we don't compute the empty line.
+        for (int j = 1; j < 8; j++) {
+            // Only draw the pixel when the current bit is high.
+            if (line & 0x01) {
+                draw_pixel(x + i, y + j, color);
+            }
+
+            // Shift to the next bit to compute.
+            line >>= 1;
+        }
+    }
+}
