@@ -97,4 +97,32 @@ void ssd1331_clear_window(void);
  *       Also ensure to provide a valid character identifier.
  */
 void ssd1331_draw_char(uint8_t x, uint8_t y, uint8_t char_id, uint16_t color);
+
+/**
+ * @brief Draws a string at the specified (x,y) location on the screen.
+ *
+ * This function draws a string of characters on the OLED display starting at the specified
+ * `x` and `y` coordinates. Each character is drawn using a predefined font stored in memory,
+ * and characters are spaced by 1 pixel for readability. Characters that are not supported
+ * by the font are skipped.
+ *
+ * @param x      The x-coordinate (in pixels) where the string should start.
+ * @param y      The y-coordinate (in pixels) where the string should start.
+ * @param text   A pointer to a null-terminated string to be drawn. Only characters supported
+ *               by the `font.h` function will be rendered.
+ * @param color  The 16-bit RGB565 color used to draw the string. Each character will be
+ *               rendered in this color.
+ *
+ * @note This function assumes the following display constraints:
+ *       - The display width is 96 pixels.
+ *       - Each character in the font is 6 pixels wide.
+ *       - There is a 1-pixel horizontal spacing between characters.
+ *
+ * @warning Ensure the `text` pointer is not `NULL` to avoid undefined behavior.
+ *
+ * @example
+ * // Draw "20:24" at position (10, 20) in white color (0xFFFF)
+ * ssd1331_draw_string(10, 20, "20:24", 0xFFFF);
+ */
+void ssd1331_draw_string(uint8_t x, uint8_t y, const char *text, uint16_t color);
 #endif

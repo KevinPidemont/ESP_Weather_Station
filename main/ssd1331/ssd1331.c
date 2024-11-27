@@ -239,3 +239,39 @@ void ssd1331_draw_char(uint8_t x, uint8_t y, uint8_t char_id, uint16_t color) {
         }
     }
 }
+
+// Internal method that map a char to one of our custom char id
+int8_t map_char_to_font_id(char c) {
+    printf("[map_char_to_font_id] c=%c, d=%d\n", c, c);
+    switch (c) {
+        case '0': return CHAR_0;
+        case '1' : return CHAR_1;
+        case '2' : return CHAR_2;
+        case '3' : return CHAR_3;
+        case '4' : return CHAR_4;
+        case '5' : return CHAR_5;
+        case '6' : return CHAR_6;
+        case '7' : return CHAR_7;
+        case '8' : return CHAR_8;
+        case '9' : return CHAR_9;
+        case 'C' : return CHAR_C;
+        case ':' : return CHAR_COLON;
+        case '°' : return CHAR_DEGREE;
+        default: return -1;
+    }
+}
+
+void ssd1331_draw_string(uint8_t x, uint8_t y, const char *text, uint16_t color) {
+    uint8_t x_offset = x;
+
+    while (*text) {
+        const int8_t char_id = map_char_to_font_id(*text);
+        text++;
+        if (char_id < 0) {
+            continue;
+        }
+
+        ssd1331_draw_char(x_offset, y, char_id, color);
+        x_offset += 7; // Each character are 6 pixels wide, we add a space of 1 pixel between each character
+    }
+}

@@ -27,4 +27,6 @@ void app_main(void)
         // 7 = 5 pixels wide + 2 padding
         ssd1331_draw_char((7 * i), 0, i, 0xFFFF);
     }
+
+    ssd1331_draw_string(0, 20, "20°C", 0xFF00);
 }
