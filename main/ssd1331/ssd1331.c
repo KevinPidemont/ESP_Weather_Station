@@ -205,7 +205,7 @@ void ssd1331_clear_window(void) {
 
 void ssd1331_draw_char(uint8_t x, uint8_t y, uint8_t char_id, uint16_t color) {
     // When the given char_id is provided, we abort this operation
-    if (char_id >= 13) {
+    if (char_id >= 15) {
         return;
     }
 
@@ -257,6 +257,8 @@ int8_t map_char_to_font_id(char c) {
         case 'C' : return CHAR_C;
         case ':' : return CHAR_COLON;
         case '°' : return CHAR_DEGREE;
+        case '.' : return CHAR_DOT;
+        case '%' : return CHAR_PERCENT;
         default: return -1;
     }
 }

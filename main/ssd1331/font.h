@@ -16,6 +16,8 @@
 #define CHAR_C 10
 #define CHAR_DEGREE 11
 #define CHAR_COLON 12
+#define CHAR_DOT 13
+#define CHAR_PERCENT 14
 
 /**
  * @brief Associate one of the predefined char key to their bitmap representation.
@@ -40,6 +42,8 @@ static const uint8_t font5x8[][6] = {
     [CHAR_C] = {0x3E, 0x41, 0x41, 0x41, 0x22},
     [CHAR_DEGREE] = {0x00, 0x06, 0x09, 0x09, 0x06},    
     [CHAR_COLON] = {0x00, 0x36, 0x36, 0x00, 0x00},
+    [CHAR_DOT] = {0x00, 0x30, 0x30, 0x00, 0x00},
+    [CHAR_PERCENT] = {0x63, 0x13, 0x08, 0x64, 0x63},
 };
 
 #endif
